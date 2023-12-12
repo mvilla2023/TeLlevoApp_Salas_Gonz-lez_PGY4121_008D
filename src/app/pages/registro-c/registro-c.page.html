@@ -1,0 +1,96 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"
+          text="Back"
+          color="warning"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-size: 10px;">Registro Conductor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="small" style="font-size: 20px;">Registro Conductor</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card style="background-color: darkgoldenrod; margin: 5px;">
+    <ion-card-header>
+
+      <ion-card-title style="text-align: center;">Registra como Conductor </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="loginForm">
+        <ion-list>
+
+          <ion-item>
+            <ion-label position="floating" style="font-size: 15px;">Nombre: </ion-label>
+            <ion-input type="text" formControlName="nombre" [(ngModel)]="newConductor.nombre" placeholder="Martin" required></ion-input>
+          </ion-item>
+
+          <div *ngIf="loginForm.get('nombre')?.invalid && (loginForm.get('nombre')?.dirty || loginForm.get('nombre')?.touched)">
+            <div style="color:red" *ngIf="loginForm.get('nombre')?.hasError('required')">
+              *Nombre es obligatorio
+            </div>
+            <div style="color: red;" *ngIf="loginForm.get('nombre')?.hasError('minlength')">
+              *El nombre debe tener minimo 4 caracteres
+            </div>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating" style="font-size: 15px;">Patente: </ion-label>
+            <ion-input type="text" formControlName="patente" [(ngModel)]="newConductor.patente" placeholder="08W023" required></ion-input>
+          </ion-item>
+
+          <div *ngIf="loginForm.get('patente')?.invalid && (loginForm.get('patente')?.dirty || loginForm.get('patente')?.touched)">
+            <div style="color:red" *ngIf="loginForm.get('patente')?.hasError('required')">
+              *Patente es obligatoria
+            </div>
+            <div style="color: red;" *ngIf="loginForm.get('nombre')?.hasError('minlength')">
+              *La patente debe tener minimo y máximo 6 caracteres
+            </div>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating" style="font-size: 15px;">Correo personal: </ion-label>
+            <ion-input type="email" formControlName="email" [(ngModel)]="newConductor.email" placeholder="ma.salasv@gmail.com" required></ion-input>
+          </ion-item>
+
+          <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+            <div style="color:red" *ngIf="loginForm.get('email')?.hasError('required')">
+              *Email es obligatorio
+            </div>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating" style="font-size: 15px;">Contraseña: </ion-label>
+            <ion-input type="password" formControlName="password" [(ngModel)]="newConductor.password" required></ion-input>
+          </ion-item>
+
+          <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+            <div style="color:red" *ngIf="loginForm.get('contraseña')?.hasError('required')">
+              *La contraseña es obligatoria
+            </div>
+            <div style="color: red;" *ngIf="loginForm.get('nombre')?.hasError('minlength')">
+              *La contraseña debe tener minimo 8 caracteres
+            </div>
+          </div>
+
+          <ion-item>
+            <ion-checkbox slot="start"></ion-checkbox>
+            <ion-label style="font-size: 12px; white-space: normal" required>Acepto las condiciones de uso.</ion-label>
+          </ion-item>
+          
+        </ion-list>
+        <ion-button (click)="crearConductor()" [disabled]="!loginForm.valid" expand="block" fill="solid" color="dark" shape="round">
+          Registrar Conductor
+        </ion-button>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+  
+
+</ion-content>

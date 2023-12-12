@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"
+        text="Back"
+        color="warning"></ion-back-button>
+  </ion-buttons>
+    <ion-title>Perfil de conductor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large" style="font-size: 20px;" class="ion-text-justify">Perfil de conductor</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ion-content>
+
+<ion-card style="background-color:lightgoldenrodyellow;">
+  <img src="assets/profile.png" style="padding: 2%;">
+  <ion-card-header style="background-color: grey;">
+    <ion-card-title class=texto style="font-weight: lighter;;">{{nombre}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content class="texto2" style="color:  black; font-size: 14px;">
+    Usuario: {{nombre}}
+    <br>
+    Patente: {{patente}}
+    <br>
+    Correo: {{email}}
+    <br>
+    Contraseña: <ion-input type="{{showPassword ? 'text': 'password'}}" value="{{password}}" readonly></ion-input>
+    <ion-button fill="clear" (click)="togglePasswordVisiblity()">
+      <ion-icon [name]="showPassword ? 'eye-off': 'eye'"></ion-icon>
+    </ion-button>
+
+    <ion-button style="margin: 15px"[routerLink]="['/actualizar-c']"color="warning"> 
+      <ion-icon name="create"></ion-icon> </ion-button>
+  </ion-card-content>
+</ion-card>

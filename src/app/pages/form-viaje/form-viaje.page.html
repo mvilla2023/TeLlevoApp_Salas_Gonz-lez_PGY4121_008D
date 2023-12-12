@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="md">
+    <ion-title>Datos del Viaje</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"
+        text="Back"
+        color="warning"></ion-back-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <img src="assets/maps.png" alt="">
+    <div class="container-input-sup">
+      <div class="simbolo">
+        <div class="linea"></div>
+      </div>
+      <form action="">
+        <ion-item fill="outline">
+          <ion-input placeholder="Desde Duoc Maipu" disabled></ion-input>
+        </ion-item>
+      </form>
+    </div>
+
+    <form [formGroup]="loginForm">
+      <ion-list>
+
+        <ion-item>
+          <ion-label position="floating" style="font-size: 15px;">Nombre conductor: </ion-label>
+          <ion-input type="text" formControlName="nombre" [(ngModel)]="newViaje.nombre" placeholder="Martin" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating" style="font-size: 15px;">Patente: </ion-label>
+          <ion-input type="text" formControlName="patente" [(ngModel)]="newViaje.patente" placeholder="08W023" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating" style="font-size: 15px;">Valor viaje: </ion-label>
+          <ion-input type="text" formControlName="valorViaje" [(ngModel)]="newViaje.valorViaje" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating" style="font-size: 15px;">Destino viaje: </ion-label>
+          <ion-input type="text" formControlName="destino" [(ngModel)]="newViaje.destino" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating" style="font-size: 15px;">Estado: </ion-label>
+          <ion-input type="text" formControlName="estado" [(ngModel)]="newViaje.estado" required></ion-input>
+        </ion-item>
+        
+      </ion-list>
+      <ion-button (click)="crearViaje()" [disabled]="!loginForm.valid" expand="block" fill="solid" color="dark" shape="round">
+        Registrar Viaje
+      </ion-button>
+
+    </form>
+  </div>
+</ion-content>

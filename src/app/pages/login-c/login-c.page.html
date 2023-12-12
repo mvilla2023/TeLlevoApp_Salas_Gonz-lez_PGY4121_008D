@@ -1,0 +1,78 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"
+        text="Back"
+        color="warning"></ion-back-button>
+  </ion-buttons>
+    <ion-title class="ion-text-center">Inicio de sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="small" style="font-size: 20px;">Inicio de sesión</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-card style="background-color: darkgoldenrod; margin: 10px;">
+  <ion-card-header>
+
+    <ion-card-title style="text-align: center;">Conductor</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <form [formGroup]="loginForm" (ngSubmit)="loginC()">
+      <ion-list>
+
+        <ion-item>
+          <ion-label position="floating" style="font-size: 15px;">Nombre de usuario: </ion-label>
+          <ion-input type="text" formControlName="nombre"></ion-input>
+        </ion-item>
+
+        <div *ngIf="loginForm.get('nombre')?.invalid && (loginForm.get('nombre')?.dirty || loginForm.get('nombre')?.touched)">
+          <div style="color:red" *ngIf="loginForm.get('nombre')?.hasError('required')">
+            *Nombre es obligatorio
+          </div>
+          <div style="color: red;" *ngIf="loginForm.get('nombre')?.hasError('minlength')">
+            *Nombre debe tener minimo 4 caracteres
+          </div>
+        </div>
+        
+
+        <ion-item>
+          <ion-label position="floating" style="font-size: 15px;">Contraseña: </ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+
+        <div style="color:red" *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+          <div *ngIf="loginForm.get('password')?.hasError('required')">
+            *Password es obligatoria
+          </div>
+          <div style="color: red" *ngIf="loginForm.get('password')?.hasError('minlength')">
+          *Password debe tener minimo 8 caracteres
+          </div>
+        </div>
+
+        <br>
+
+        <ion-button style="font-size: 10px; "expand="full" shape="square" color="warning"(click)="goToPasswordCPage()">
+          ¿Olvidaste la contraseña?
+        </ion-button>
+
+        <ion-button style="font-size: 10px; "expand="full" shape="square" color="success"(click)="goToRegistroCPage()">
+          Registrate como conductor
+        </ion-button>
+
+      </ion-list>
+          <ion-button (click)="loginC()" [disabled]="!loginForm.valid" expand="block" color="primary" shape="round">
+            Iniciar sesión
+          </ion-button>
+        
+      
+
+    </form>
+  </ion-card-content>
+</ion-card>
+
+</ion-content>
